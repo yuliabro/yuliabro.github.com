@@ -164,12 +164,16 @@ Finally, an example of how everything works together by simple test on Google Se
 Let's start with writing a test, adding pages as we need them. 
 
     # -*- coding: utf-8 -*-
+    require "test/unit"
+    require "rubygems"
     require "selenium-webdriver"
-    require_relative 'selenium_test_helper'
     require_relative 'page_objects/google_page'
 
     class WebsiteGoogleTest < Test::Unit::TestCase
-      include SeleniumTestHelper #@driver is initiated in the helper
+
+      def setup
+          @driver = Selenium::WebDriver.for :firefox, :profile => "Selenium"
+      end
 
       def test_human_can_search_in_google
           page = GooglePage.new(@driver, self)
@@ -178,7 +182,11 @@ Let's start with writing a test, adding pages as we need them.
       end
     end
 
-The test looks clean and descriptive, as was promissed. Now let's take a look at Google Page class:
+The test looks clean and descriptive, as was promissed.
+- Setup method initiates webdriver instance for the use of the test suite
+- It's arbitrary decision to leave asserts in the test or move them to the page objects. I prefer the last, for the cleanness of the test code. All the display, interaction and assertion logic is hidden begind the pages.
+
+Now let's take a look at Google Page class:
 
     # -*- coding: utf-8 -*-
     require_relative 'page'
