@@ -5,14 +5,13 @@ tags : [selenium, webdriver]
 ---
 {% include JB/setup %}
 
-This Jekyll introduction will outline specifically  what Jekyll is and why SELENIUM.
-Directly following the intro we'll learn exactly _how_ Jekyll does what it does.
-
 ## Overview 
 
 ### What is Page Object Pattern?
 
-The idea behind the pattern is simple each HTML page of your web-application is represented by a page class that contains methods to interract with the page. The page object is initiated on the test run making page methods available to the test. Each page class is a subclass of the main Page class that contains methods common to all pages. 
+Page Object Pattern is a test design decision to represent HTML pages of the application by page classes. The page object gets initiated on the test run making page methods available to the test. What you are aming for is Fat pages and Skinny readable tests by analogy with MVC.
+
+Example of 2 tests...
 
 ### Example
 Take this page you are on right now. It consists of the menu, page header, right-side area with listed tags, and a main area with the post body. The actions available from this page are clicking on page links, clicking on tags, leaving a comment to a post. All these actions could be written as page methods.
